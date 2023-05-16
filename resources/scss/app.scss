@@ -1,0 +1,72 @@
+@import '~bootstrap/scss/bootstrap';
+
+header {
+
+  img.logo {
+    margin-bottom: 2em;
+  }
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    list-style-type: none;
+
+
+    li {
+
+      padding: 12px 6px;
+
+      &.active {
+        background-color: #b3e5fc;
+      }
+
+    }
+
+
+  }
+
+}
+
+
+
+main.pasta-list {
+  background-image: url('../img/fondo-pag-speciali.jpg');
+  background-size: cover;
+  background-position: center;
+
+  padding: 40px 0;
+
+  .pasta-card {
+    padding: 8px;
+
+    color: gray;
+    text-transform: uppercase;
+    font-size: .9em;
+    text-align: center;
+
+
+    .pasta-card-inner {
+      background-color: white;
+
+      padding-bottom: 2em;
+
+      img {
+        width: 100%;
+      }
+
+    }
+  }
+}
+
+
+footer {
+  padding: 80px 0;
+
+  background-image: url('../img/footer-montagne-bottom.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
