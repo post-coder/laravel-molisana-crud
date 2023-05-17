@@ -18,9 +18,13 @@
 <body id="homepage">
   @include('partials/header')
 
-  <div class="container">
-    @yield('content')
-  </div>
+  <main>
+    
+    <div class="container">
+      @yield('content')
+    </div>
+
+  </main>
 
   @include('partials/footer')
 </body>

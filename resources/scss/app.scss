@@ -30,10 +30,15 @@ header {
 
 }
 
+main   {
+  // background-image: url('../img/fondo-pag-speciali.jpg');
+}
 
 
-main.pasta-list {
-  background-image: url('../img/fondo-pag-speciali.jpg');
+
+
+
+.pasta-list {
   background-size: cover;
   background-position: center;
 
@@ -48,10 +53,17 @@ main.pasta-list {
     text-align: center;
 
 
-    .pasta-card-inner {
+    a.pasta-card-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      height: 100%;
+      
+      padding-bottom: 2em;
+
       background-color: white;
 
-      padding-bottom: 2em;
 
       img {
         width: 100%;
@@ -60,6 +72,22 @@ main.pasta-list {
     }
   }
 }
+
+section.actions {
+
+  text-align: center;
+
+  padding: 2em;
+
+  a {
+    padding: 1em;
+
+    background-color: white;
+
+  }
+
+}
+
 
 
 footer {
