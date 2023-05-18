@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('src', 255);
             $table->string('title', 50);
             $table->string('type', 200);
-            $table->string('cooking_time', 10);
+            $table->string('cooking_time', 10)->nullable();
             $table->string('weight', 10);
             $table->text('description');
 

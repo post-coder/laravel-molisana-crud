@@ -37,6 +37,9 @@ class PastaController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $this->validation($request);
+
         $formData = $request->all();
 
         $newPasta = new Pasta();
@@ -89,13 +92,15 @@ class PastaController extends Controller
      */
     public function update(Request $request, Pasta $pasta)
     {
+        $this->validation($request);
+
         // prendo come sempre i parametri dei campi di input dal form
         $formData = $request->all();
 
         // sintassi per modificare un oggetto del model del database
         $pasta->update($formData);
 
-        // effettivamente è questo comando che salva le modifiche nel db
+        // questo è opzionale
         $pasta->save();
 
         // poi faccio il redirect alla show della pasta appena modificata
@@ -120,5 +125,21 @@ class PastaController extends Controller
         
     }
 
+
+    // creo una funzione che utilizzerò solo per validare
+    private function validation($request) {
+        // controlla che i parametri del form rispettino le regole che indichiamo
+        $request->validate([
+            'title' => 'required|max:50|min:5',
+            'src' => 'required|max:255',
+            'type' => 'required|max:200',
+            'cooking_time' => 'nullable|max:10',
+            'weight' => 'required|max:10',
+            'description' => 'required|min:10',
+        ]);
+        // in caso NON le rispettino (ne basta una), fa tornare l'utente
+        // alla rotta precedente, passandogli un array di errori chiamato $errors
+        
+    }
 
 }
