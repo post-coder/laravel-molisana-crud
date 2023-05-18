@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pasta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PastaController extends Controller
 {
@@ -129,17 +130,45 @@ class PastaController extends Controller
     // creo una funzione che utilizzerò solo per validare
     private function validation($request) {
         // controlla che i parametri del form rispettino le regole che indichiamo
-        $request->validate([
+        // $request->validate([
+        //     'title' => 'required|max:50|min:5',
+        //     'src' => 'required|max:255',
+        //     'type' => 'required|max:200',
+        //     'cooking_time' => 'nullable|max:10',
+        //     'weight' => 'required|max:10',
+        //     'description' => 'required|min:10',
+        // ]);
+        // in caso NON le rispettino (ne basta una), fa tornare l'utente
+        // alla rotta precedente, passandogli un array di errori chiamato $errors
+        
+
+        
+        // dobbiamo prendere solo i parametri del form, utilizziamo quindi il metodo all()
+        $formData = $request->all(); 
+        
+        // l'import da fare qui è del Validator (ce ne sono tanti) con questo percorso:
+        // Illuminate\Support\Facades\Validator;
+        // passiamo i parametri del form al metodo statico  make() di Validation
+        $validator = Validator::make($formData, [
+            // qui ci dobbiamo inserire un array di regole (quelle che abbiamo usato sino a prima)
             'title' => 'required|max:50|min:5',
             'src' => 'required|max:255',
             'type' => 'required|max:200',
             'cooking_time' => 'nullable|max:10',
             'weight' => 'required|max:10',
             'description' => 'required|min:10',
-        ]);
-        // in caso NON le rispettino (ne basta una), fa tornare l'utente
-        // alla rotta precedente, passandogli un array di errori chiamato $errors
-        
+        ], [
+            // dobbiamo inserire qui un insieme di messaggi da comunicare all'utente per ogni errore che vogliamo modificare
+            'title.required' => 'Guarda fratello, il titolo lo devi inserire.',
+            'title.max' => 'Il titolo non deve essere più lungo di 50 caratteri',
+            'title.min' => 'Il titolo non deve essere più corto di 5 caratteri',
+            'src.required' => "Il link dell'immagine deve essere indicato",
+            'src.max' => "Il link dell'immagine non deve essere più lungo di 255 caratteri",
+        ])->validate();
+
+        // importante, visto che siamo in una funzione, dobbiamo restituire un valore, il validator gestisce questo campo e in caso trovasse un errore farebbe
+        // in automatico il redirect
+        return $validator;
     }
 
 }

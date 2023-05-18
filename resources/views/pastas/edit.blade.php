@@ -12,7 +12,7 @@
     @method('PUT')
 
     <div class="mb-3">
-      <label for="title">Titolo</label>
+      <label for="title">Titolo</label>                                                  {{--operatore ternario compresso: se il primo valore è presente lo scrive, altrimenti scrive il secondo --}}   
       <input class="form-control @error('title') is-invalid @enderror" type="text" id="title" name="title" value="{{old('title') ?? $pasta->title}}">
       @error('title')
         {{-- 

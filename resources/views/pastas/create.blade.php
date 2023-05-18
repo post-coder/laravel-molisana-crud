@@ -5,7 +5,9 @@
 
 
 <main>
-  @if($errors->any()) 
+  {{--
+    possiamo non mostrare più questa sezione in quando sostituita dai messaggi di validazione dei campi di input
+    @if($errors->any()) 
 
     <div class="alert alert-danger" role="alert">
       <ul>
@@ -19,7 +21,9 @@
       
 
   
-  @endif
+  @endif 
+  
+  --}}
 
 
 
